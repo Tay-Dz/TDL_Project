@@ -45,7 +45,7 @@ public class TaskListController {
 	public ResponseEntity<List<TaskListDTO>> readByPriority(){
 		return ResponseEntity.ok(this.service.readByPriority());
 	}
-	@GetMapping("/read/priority")
+	@GetMapping("/read/name")
 	public ResponseEntity<List<TaskListDTO>> readByName(){
 		return ResponseEntity.ok(this.service.readByName());
 	}
