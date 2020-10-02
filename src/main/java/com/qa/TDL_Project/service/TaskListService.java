@@ -43,6 +43,12 @@ public class TaskListService {
 	public List<TaskListDTO> read() {
 		return this.repo.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
+	public List<TaskListDTO> readByPriority() {
+		return this.repo.orderByPriorityJPQL().stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+	public List<TaskListDTO> readByName() {
+		return this.repo.orderByNameJPQL().stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
 
 	public TaskListDTO read(Long id) {
 		TaskList found = this.repo.findById(id).orElseThrow(TaskListNotFoundException::new);

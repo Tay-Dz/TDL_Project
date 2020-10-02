@@ -41,6 +41,14 @@ public class TaskListController {
 	public ResponseEntity<List<TaskListDTO>> read(){
 		return ResponseEntity.ok(this.service.read());
 	}
+	@GetMapping("/read/priority")
+	public ResponseEntity<List<TaskListDTO>> readByPriority(){
+		return ResponseEntity.ok(this.service.readByPriority());
+	}
+	@GetMapping("/read/priority")
+	public ResponseEntity<List<TaskListDTO>> readByName(){
+		return ResponseEntity.ok(this.service.readByName());
+	}
 	
 	@GetMapping("/read/{id}")
 	public ResponseEntity<TaskListDTO> read(@PathVariable Long id){
