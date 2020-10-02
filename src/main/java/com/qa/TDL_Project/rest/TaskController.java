@@ -21,7 +21,7 @@ import com.qa.TDL_Project.service.TaskService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/Task")
+@RequestMapping("/task")
 public class TaskController {
 	TaskService service;
 

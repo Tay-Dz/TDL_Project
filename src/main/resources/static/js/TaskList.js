@@ -7,7 +7,7 @@ for (const param of params) {
 
 
 function getOrder(order) {
-  fetch("http://localhost:9005/taskList/read/" + order)
+  fetch("http://localhost:1998/taskList/read/" + order)
     .then(function (response) {
       if (response.status !== 200) {
         console.log(
@@ -34,11 +34,19 @@ function getOrder(order) {
     });
 
     function createTables(tables,TaskListData){
-        for(element in TaskListData){
-            let table = tables.createElement("table");
-            let data = Object.keys(element[0]);
+        for(element of TaskListData){
+            let tableDiv = document.createElement("div");
+            let table = document.createElement("table");
+            let Listname =document.createElement("h2");
+            console.log(element.tasks);
+            Listname.textContent=element.name;
+            let data = Object.keys(element.tasks[0]);
+            console.log(data);
             createTableHead(table, data);
-            createTableBody(table, element);
+            createTableBody(table, element.tasks);
+            tableDiv.appendChild(Listname);
+            tableDiv.appendChild(table);
+            tables.appendChild(tableDiv);
         }
     }
 
@@ -51,25 +59,25 @@ function getOrder(order) {
       th.appendChild(text);
       row.appendChild(th);
     }
-    let th2 = document.createElement("th");
-    let text2 = document.createTextNode("View");
-    th2.appendChild(text2);
-    row.appendChild(th2);
+    // let th2 = document.createElement("th");
+    // let text2 = document.createTextNode("View");
+    // th2.appendChild(text2);
+    // row.appendChild(th2);
   }
-  function createTableBody(table, TvShowData) {
-    for (let element of TvShowData) {
+  function createTableBody(table, TaskListData) {
+    for (let element of TaskListData) {
       let row = table.insertRow();
       for (key in element) {
         let cell = row.insertCell();
         let text = document.createTextNode(element[key]);
         cell.appendChild(text);
       }
-      let newCell = row.insertCell();
-      let myViewButton = document.createElement("a");
-      myViewButton.className = "btn btn-warning";
-      myViewButton.innerHTML = "View";
-      myViewButton.href = "record.html?id=" + element.id;
-      newCell.appendChild(myViewButton);
+    //   let newCell = row.insertCell();
+    //   let myViewButton = document.createElement("a");
+    //   myViewButton.className = "btn btn-warning";
+    //   myViewButton.innerHTML = "View";
+    //   myViewButton.href = "record.html?id=" + element.id;
+    //   newCell.appendChild(myViewButton);
     }
   }
 }

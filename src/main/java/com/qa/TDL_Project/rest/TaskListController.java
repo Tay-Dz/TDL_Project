@@ -37,7 +37,7 @@ public class TaskListController {
 //		TaskListDTO created =this.service.create(taskListDTO);
 		return new ResponseEntity<>(this.service.create(dto),HttpStatus.CREATED);
 	}
-	@GetMapping("/read")
+	@GetMapping("/read/default")
 	public ResponseEntity<List<TaskListDTO>> read(){
 		return ResponseEntity.ok(this.service.read());
 	}

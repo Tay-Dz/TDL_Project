@@ -23,8 +23,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
+//@ToString
+//@EqualsAndHashCode
 public class TaskList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

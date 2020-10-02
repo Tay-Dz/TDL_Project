@@ -19,6 +19,6 @@ public class TaskListDTO {
 	private Long id;
 	private String name;
 	private Integer priority;
-	private List<TaskDTO> taskDTO = new ArrayList<>();
+	private List<TaskDTO> tasks= new ArrayList<>();
 
 }
