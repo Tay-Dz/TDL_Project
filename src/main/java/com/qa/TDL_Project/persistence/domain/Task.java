@@ -35,7 +35,15 @@ public class Task {
 	@Column(name = "priority")
 	private Integer priority;
 	
-	@ManyToOne//(targetEntity = Channel.class)
+	@ManyToOne
 	private TaskList taskList;
+
+	public Task(@NotNull @Size(min = 1, max = 120) String name, Integer priority, TaskList taskList) {
+		super();
+		this.name = name;
+		this.priority = priority;
+		this.taskList = taskList;
+	}
+	
 
 }
