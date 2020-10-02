@@ -11,10 +11,10 @@ import com.qa.TDL_Project.persistence.domain.TaskList;
 @Repository
 public interface TaskListRepo extends JpaRepository<TaskList,Long> {
 	
-	@Query("SELECT * FROM TaskList order by priority")
+	@Query(value ="SELECT * FROM TaskList ORDER BY priority", nativeQuery = true)
     Optional<TaskList> orderByPriorityJPQL();
 	
-	@Query("SELECT * FROM TaskList order by name")
+	@Query(value ="SELECT * FROM TaskList ORDER BY task_list_name", nativeQuery = true)
     Optional<TaskList> orderByNameJPQL();
 
 
