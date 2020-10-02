@@ -8,20 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.TDL_Project.dto.TaskListDTO;
-import com.qa.TDL_Project.exception.TaskListListNotFoundException;
 import com.qa.TDL_Project.exception.TaskListNotFoundException;
 import com.qa.TDL_Project.persistence.domain.TaskList;
 import com.qa.TDL_Project.persistence.repository.TaskListRepo;
 import com.qa.TDL_Project.utils.SAPIBeanUtils;
 
 @Service
-public class TaskListListService {
+public class TaskListService {
 	
 	private TaskListRepo repo;
 	private ModelMapper mapper;
 
 	@Autowired
-	public TaskListListService(TaskListRepo repo, ModelMapper mapper) {
+	public TaskListService(TaskListRepo repo, ModelMapper mapper) {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;
