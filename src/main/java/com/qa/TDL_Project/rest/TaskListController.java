@@ -54,6 +54,10 @@ public class TaskListController {
 	public ResponseEntity<TaskListDTO> read(@PathVariable Long id){
 		return ResponseEntity.ok(this.service.read(id));
 	}
+	@GetMapping("/readLast")
+	public ResponseEntity<Long> readLastID(){
+		return ResponseEntity.ok(this.service.readLastID());
+	}
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<TaskListDTO> update(@PathVariable Long id,
