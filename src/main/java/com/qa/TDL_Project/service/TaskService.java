@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.TDL_Project.dto.TaskDTO;
-import com.qa.TDL_Project.exception.TaskListNotFoundException;
 import com.qa.TDL_Project.exception.TaskNotFoundException;
 import com.qa.TDL_Project.persistence.domain.Task;
 import com.qa.TDL_Project.persistence.repository.TaskRepo;
@@ -57,6 +56,9 @@ public class TaskService {
 	}
 
 	public boolean delete(Long id) {
+		if(!this.repo.existsById(id)) {
+			throw new TaskNotFoundException();
+		}
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}

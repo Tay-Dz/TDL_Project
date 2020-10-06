@@ -1,6 +1,7 @@
 package com.qa.TDL_Project.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 //@ToString
-//@EqualsAndHashCode
+@EqualsAndHashCode
 public class TaskDTO {
 
 	private Long id;

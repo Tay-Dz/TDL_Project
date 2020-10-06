@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 //@ToString
-//@EqualsAndHashCode
+@EqualsAndHashCode
 public class Task {
 	
 	@Id
@@ -38,11 +38,10 @@ public class Task {
 	@ManyToOne
 	private TaskList taskList;
 
-	public Task(@NotNull @Size(min = 1, max = 120) String name, Integer priority, TaskList taskList) {
+	public Task(@NotNull @Size(min = 1, max = 120) String name, Integer priority) {
 		super();
 		this.name = name;
 		this.priority = priority;
-		this.taskList = taskList;
 	}
 	
 

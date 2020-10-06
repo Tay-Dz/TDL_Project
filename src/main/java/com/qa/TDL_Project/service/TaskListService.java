@@ -29,16 +29,9 @@ public class TaskListService {
 	private TaskListDTO mapToDTO(TaskList taskList) {
 		return this.mapper.map(taskList, TaskListDTO.class);
 	}
-//	private TaskListDTO mapToDTO(TaskList taskList) {
-//		return this.mapper.map(taskList, TaskListDTO.class);
-//	}
 
-//	private TaskList mapFromDTO(TaskListDTO taskListDTO) {
-//		return this.mapper.map(taskListDTO, TaskList.class);
-//	}
 
 	public TaskListDTO create(TaskList taskList) {
-//		TaskList toSave = this.mapFromDTO(taskListDTO);
 		TaskList saved = this.repo.save(taskList);
 		return mapToDTO(saved);
 	}
@@ -65,6 +58,9 @@ public class TaskListService {
 	}
 
 	public boolean delete(Long id) {
+		if(!this.repo.existsById(id)) {
+			throw new TaskListNotFoundException();
+		}
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}
