@@ -21,11 +21,9 @@ function getOrder(order) {
         console.log(TaskListData);
 
         let tables = document.querySelector("#TaskTables");
-        let data = Object.keys(TaskListData[0]);
+        // let data = Object.keys(TaskListData[0]);
 
         createTables(tables,TaskListData);
-
-
       });
     })
     .catch(function (err) {
@@ -49,6 +47,11 @@ function createTables(tables,TaskListData){
         createTableBody(table, element.tasks);
         tableDiv.appendChild(Listname);
         tableDiv.appendChild(table);
+
+        //Need to add footer for deleta and edit task list
+
+
+
         tableDiv.className = "col-3";
         tables.appendChild(tableDiv);
         let seperator = document.createElement("div");
@@ -79,12 +82,14 @@ row.appendChild(th3);
 function createTableBody(table, TaskListData) {
 for (let element of TaskListData) {
   let row = table.insertRow();
-    let cellName = row.insertCell();
-    let textName = document.createTextNode(element.name);
-    cellName.appendChild(textName);
-    let cellPriority = row.insertCell();
-    let textPriority = document.createTextNode(priority(element.priority));
-    cellPriority.appendChild(textPriority);
+
+  let cellName = row.insertCell();
+  let textName = document.createTextNode(element.name);
+  cellName.appendChild(textName);
+
+  let cellPriority = row.insertCell();
+  let textPriority = document.createTextNode(priority(element.priority));
+  cellPriority.appendChild(textPriority);
   
   let newCell = row.insertCell();
   let myEditButton = document.createElement("a");
