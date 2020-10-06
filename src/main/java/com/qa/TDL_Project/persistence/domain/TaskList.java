@@ -24,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 //@ToString
-//@EqualsAndHashCode
+@EqualsAndHashCode
 public class TaskList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,17 +42,23 @@ public class TaskList {
 	@OneToMany(mappedBy="taskList", cascade=CascadeType.ALL)
 	private List<Task> tasks = new ArrayList<>();
 
-//
-//	public TaskList( @NotNull @Size(min = 1, max = 60) String name, int priority, List<Task> tasks) {
-//		super();
-//		//this.id = id;
-//		this.name = name;
-//		this.priority = priority;
-//		this.tasks = tasks;
-//	}
-//	public TaskList(@NotNull @Size(min = 1, max = 60) String name) {
-//		super();
-//		this.name = name;
-//	}
+
+	public TaskList( @NotNull @Size(min = 1, max = 60) String name, int priority, List<Task> tasks) {
+		super();
+		//this.id = id;
+		this.name = name;
+		this.priority = priority;
+		this.tasks = tasks;
+	}
+	public TaskList( @NotNull @Size(min = 1, max = 60) String name, int priority) {
+		super();
+		//this.id = id;
+		this.name = name;
+		this.priority = priority;
+	}
+	public TaskList(@NotNull @Size(min = 1, max = 60) String name) {
+		super();
+		this.name = name;
+	}
 
 }
