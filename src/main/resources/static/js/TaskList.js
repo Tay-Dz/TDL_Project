@@ -25,8 +25,7 @@ function getOrder(order) {
 
         createTables(tables,TaskListData);
 
-        // createTableHead(table, data);
-        // createTableBody(table, TaskListData);
+
       });
     })
     .catch(function (err) {
@@ -62,6 +61,7 @@ function createTableHead(table, data) {
 let thead = table.createTHead();
 let row = thead.insertRow();
 for (let key of data) {
+  if(key==="id"){continue;}
   let th = document.createElement("th");
   let text = document.createTextNode(key);
   th.appendChild(text);
@@ -79,32 +79,22 @@ row.appendChild(th3);
 function createTableBody(table, TaskListData) {
 for (let element of TaskListData) {
   let row = table.insertRow();
-  for (key in element) {
-    let cell = row.insertCell();
-    let text = document.createTextNode(element[key]);
-    cell.appendChild(text);
-  }
+    let cellName = row.insertCell();
+    let textName = document.createTextNode(element.name);
+    cellName.appendChild(textName);
+    let cellPriority = row.insertCell();
+    let textPriority = document.createTextNode(priority(element.priority));
+    cellPriority.appendChild(textPriority);
+  
   let newCell = row.insertCell();
+  let myEditButton = document.createElement("a");
+  myEditButton.className = "btn btn-outline-primary";
+ 
   let myDeleteButton = document.createElement("a");
   myDeleteButton.className = "btn btn-outline-primary";
+  myDeleteButton.onclick = function(){deleteTask(element.id);};
   
-//   let myDeleteIcon = document.createElement("svg");
-//   myDeleteIcon.setAttribute("height","1em");
-//   myDeleteIcon.setAttribute("width","1em");
-//   myDeleteIcon.setAttribute("viewBox","0 0 16 16");
-//   //myDeleteIcon.setAttribute("fill","currentColor" );
-//   myDeleteIcon.setAttribute("xmlns","http://www.w3.org/2000/svg");
-//   myDeleteIcon.className = "bi bi-trash";
-
-//   let iconPath1 = document.createElement("path")
-//   iconPath1.setAttribute("d","M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z");
-//   let iconPath2 = document.createElement("path")
-//   iconPath2.setAttribute("fill-rule","evenodd");
-//   iconPath2.setAttribute("d","M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z");
-//   myDeleteIcon.appendChild(iconPath1);
-//   myDeleteIcon.appendChild(iconPath2);
-//   myDeleteButton.appendChild(myDeleteIcon);
-//   myViewButton.href = "record.html?id=" + element.id;
+  newCell.appendChild(myEditButton);
   newCell.appendChild(myDeleteButton);
 }
 }
@@ -117,4 +107,22 @@ function priority(priority){
     }else{
         return "high";
     }
+}
+
+function deleteTask(id){
+  fetch("http://localhost:1998/task/delete/"+id, {
+      method: 'delete',
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+    // .then(json)
+    .then(function (data) {
+      console.log('Request succeeded with JSON response', data);
+    })
+    .catch(function (error) {
+      console.log('Request failed', error);
+    });
+
+     location.reload();
 }
