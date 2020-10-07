@@ -1,12 +1,17 @@
-.high{
+.High{
     background-color:palevioletred
 }
-.medium{
+.Medium{
     background-color: palegoldenrod
 }
-.low{
+.Low{
     background-color:palegreen
 }
 header{
     background-color: slategrey;
 }
+
+.row{
+    margin-bottom: 50px;
+}
+

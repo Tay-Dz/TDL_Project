@@ -4,58 +4,195 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
-    
-    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <header>
-        <div class="row">
-            <h1 class="TChead col-10">Task Lists</h1>
-            <button class="btn btn-warning col-1">
-                <a href="index.html">Log Out</a>
-            </button>
-        </div>
+      <div class="row">
+        <h1 class="TChead col-10">Task Lists</h1>
+        <!-- <button class="btn btn-warning col-1">
+          <a href="index.html">Log Out</a>
+        </button> -->
+      </div>
     </header>
 
     <div class="container">
-        <h1>Tasks</h1>
-        <div id = "TaskTables" class ="row">
-        </div>
-        <div id = "TaskListAdd" class = "row">
-          <!-- <button id="addTL" class="btn btn-warning">
-            Add Task List
-          </button> -->
-        </div>
-    </div>
-    
+      <h1>Tasks</h1>
+      <div id="TaskTables" class="row">
 
+
+        <div class="modal fade" id="EditTLModal" tabindex="-1" aria-labelledby="EditTLModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" >Edit Task List</h5>
+                <button type="button" class="close"data-dismiss="modal"aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="ModalFormEdit" class="EditTaskList" method="PUT">
+                  <div class="form-group">
+                    <label for="EditTaskListName">Task List Name:</label>
+                    <input type="text" class="form-control"  id="EditTaskListName" >
+                  </div>
+                  <div class="form-group">
+                    <label for="EditTaskListPriority">Task List Priority:</label>
+                    <select multiple class="form-control" id="EditTaskListPriority">
+                      <option>High</option>
+                      <option>Medium</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Edit</button>
+                  </form>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="AddTaskModal" tabindex="-1" aria-labelledby="AddTaskModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id ="addTitle" class="modal-title" >Add Task to </h5>
+                <button type="button" class="close"data-dismiss="modal"aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="ModalFormAddTask" class="AddTask" method="POST">
+                  <div class="form-group">
+                    <label for="AddTaskName">Task Name:</label>
+                    <input type="text" class="form-control"  id="AddTaskName" >
+                  </div>
+                  <div class="form-group">
+                    <label for="AddTaskPriority">Task Priority:</label>
+                    <select multiple class="form-control" id="AddTaskPriority">
+                      <option>High</option>
+                      <option>Medium</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade" id="EditTaskModal" tabindex="-1" aria-labelledby="EditTaskModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id ="addTitle" class="modal-title" >Edit Task </h5>
+                <button type="button" class="close"data-dismiss="modal"aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="ModalFormEditTask" class="EditTask" method="PUT">
+                  <div class="form-group">
+                    <label for="EditTaskName">Task Name:</label>
+                    <input type="text" class="form-control"  id="EditTaskName" >
+                  </div>
+                  <div class="form-group">
+                    <label for="EditTaskPriority">Task Priority:</label>
+                    <select multiple class="form-control" id="EditTaskPriority">
+                      <option>High</option>
+                      <option>Medium</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      
+      <div id="TaskListAdd" class="row ">
+        <!-- Button trigger modal -->
+        <div class = "col-4"></div>
+        <button
+          type="button"
+          class="btn btn-primary col-3"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Add New Task List
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" >Add Task List</h5>
+                <button type="button" class="close"data-dismiss="modal"aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="ModalForm" class="TaskList" method="POST">
+                  <div class="form-group">
+                    <label for="TaskListName">Task: List Name:</label>
+                    <input type="text" class="form-control"  id="TaskListName" >
+                  </div>
+                  <div class="form-group">
+                    <label for="TaskListPriority">Task List Priority:</label>
+                    <select multiple class="form-control" id="TaskListPriority">
+                      <option>High</option>
+                      <option>Medium</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <footer>
-        <div class="row">
-            <button class="btn btn-warning col-1">
-                <a href="TaskList.html?order=default">Default Order</a>
-            </button>
-            <div class="col-1"></div>
-            <button class="btn btn-warning col-1">
-                <a href="TaskList.html?order=name">Order by Name</a>
-            </button>
-            <div class="col-1"></div>
-            <button class="btn btn-warning col-1">
-                <a href="TaskList.html?order=priority">Order by Priority</a>
-            </button>
-        </div>
+      <div class="row ">
+        <div class = "col-3"></div>
+        <button class="btn btn-warning col-1">
+          <a href="TaskList.html?order=default">Default Order</a>
+        </button>
+        <div class="col-1"></div>
+        <button class="btn btn-warning col-1">
+          <a href="TaskList.html?order=name">Order by Name</a>
+        </button>
+        <div class="col-1"></div>
+        <button class="btn btn-warning col-1">
+          <a href="TaskList.html?order=priority">Order by Priority</a>
+        </button>
+      </div>
     </footer>
 
-
-
     <script src="../js/TaskList.js"></script>
-    <script src="../js/AddTLBtn.js"></script>
+    <script src="../js/AddTaskList.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
