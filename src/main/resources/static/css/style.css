@@ -1,0 +1,17 @@
+.High{
+    background-color:palevioletred
+}
+.Medium{
+    background-color: palegoldenrod
+}
+.Low{
+    background-color:palegreen
+}
+header{
+    background-color: slategrey;
+}
+
+.row{
+    margin-bottom: 50px;
+}
+
