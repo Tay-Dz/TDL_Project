@@ -64,3 +64,5 @@
 [1008/163132.238:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [1008/163151.261:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [1008/163203.553:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1008/165155.610:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1008/165229.307:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
