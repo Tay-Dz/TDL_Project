@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qa.TDL_Project.dto.TaskListDTO;
 import com.qa.TDL_Project.exception.TaskListNotFoundException;
@@ -14,6 +16,7 @@ import com.qa.TDL_Project.persistence.repository.TaskListRepo;
 import com.qa.TDL_Project.utils.SAPIBeanUtils;
 
 @Service
+@Transactional
 public class TaskListService {
 	
 	private TaskListRepo repo;
@@ -36,6 +39,7 @@ public class TaskListService {
 		return mapToDTO(saved);
 	}
 
+//	@Transactional(propagation=Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
 	public List<TaskListDTO> read() {
 		return this.repo.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
@@ -46,6 +50,7 @@ public class TaskListService {
 		return this.repo.orderByNameJPQL().stream().map(this::mapToDTO).collect(Collectors.toList());
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
 	public TaskListDTO read(Long id) {
 		TaskList found = this.repo.findById(id).orElseThrow(TaskListNotFoundException::new);
 		return this.mapToDTO(found);

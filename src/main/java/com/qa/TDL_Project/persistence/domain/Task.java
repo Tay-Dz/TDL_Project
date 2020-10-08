@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 //@ToString
-@EqualsAndHashCode
+//@EqualsAndHashCode
 public class Task {
 	
 	@Id

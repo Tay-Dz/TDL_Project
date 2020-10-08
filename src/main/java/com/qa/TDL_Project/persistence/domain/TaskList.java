@@ -17,14 +17,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
 //@ToString
-@EqualsAndHashCode
+//@EqualsAndHashCode
 public class TaskList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +37,6 @@ public class TaskList {
 	@Column(name = "priority")
 	private Integer priority;
 
-	
 	@OneToMany(mappedBy="taskList", cascade=CascadeType.ALL)
 	private List<Task> tasks = new ArrayList<>();
 
@@ -60,5 +58,5 @@ public class TaskList {
 		super();
 		this.name = name;
 	}
-
+		
 }

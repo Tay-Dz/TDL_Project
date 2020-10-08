@@ -98,7 +98,7 @@ public class TaskListControllerUnitTest {
             .read();
     }
     @Test
-    void readAllByPriority() {
+    void readAllByPriorityTest() {
         when(service.readByPriority())
             .thenReturn(this.TLList
                     .stream()
@@ -113,7 +113,7 @@ public class TaskListControllerUnitTest {
     }
     
     @Test
-    void readAllByName() {
+    void readAllByNameTest() {
         when(service.readByName())
             .thenReturn(this.TLList
                     .stream()
@@ -125,6 +125,16 @@ public class TaskListControllerUnitTest {
         
         verify(service, times(1))
             .readByName();
+    }
+    @Test
+    void readALastIDTest() {
+        when(service.readLastID())
+            .thenReturn(1l);
+        
+        assertThat(this.controller.readLastID()).isNotNull();
+        
+        verify(service, times(1))
+            .readLastID();
     }
 
     @Test

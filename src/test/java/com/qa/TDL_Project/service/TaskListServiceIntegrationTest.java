@@ -37,12 +37,14 @@ class TaskListServiceIntegrationTest {
     private TaskListDTO mapToDTO(TaskList taskList) {
         return this.modelMapper.map(taskList, TaskListDTO.class);
     }
+    
+    
 
     @BeforeEach
     void init() {
     	testTasks.add(new Task("Clean",1));
         this.repo.deleteAll();
-        this.testTaskList = new TaskList("Monday",1,testTasks);
+        this.testTaskList = new TaskList("Monday",1);
         this.testTaskListWithId = this.repo.save(this.testTaskList);
     }
 
@@ -63,7 +65,25 @@ class TaskListServiceIntegrationTest {
         assertThat(this.service.read())
             .isEqualTo(Stream.of(this.mapToDTO(testTaskListWithId)).collect(Collectors.toList()));
     }
+    @Test
+    void testReadByPriority() {
+        assertThat(this.service.readByPriority())
+            .isEqualTo(Stream.of(this.mapToDTO(testTaskListWithId)).collect(Collectors.toList()));
+    }
+    @Test
+    void testReadByName() {
+        assertThat(this.service.readByName())
+            .isEqualTo(Stream.of(this.mapToDTO(testTaskListWithId)).collect(Collectors.toList()));
+    }
+    
 
+    
+    @Test 
+    void readLastID() {
+    	assertThat(this.service.readLastID())
+    	.isEqualTo(this.testTaskListWithId.getId());
+    }
+    
     @Test
     void testUpdate() {
         TaskListDTO newTaskList = new TaskListDTO(null, "Tuesday",2);

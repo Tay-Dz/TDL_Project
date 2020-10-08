@@ -117,6 +117,19 @@ public class TaskListControllerIntegrationTest {
 
 		assertEquals(this.objectMapper.writeValueAsString(taskListList), content);
 	}
+	@Test
+	void testReadLastID() throws Exception {
+		List<TaskList> taskListList = new ArrayList<>();
+		taskListList.add(this.testTaskListWithId);
+
+		String content = this.mock
+				.perform(request(HttpMethod.GET, "/taskList/readLast")
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn().getResponse().getContentAsString();
+
+		assertEquals(this.objectMapper.writeValueAsString(taskListList.get(0).getId()), content);
+	}
 
 	@Test
     void testUpdate() throws Exception {

@@ -7,15 +7,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.qa.TDL_Project.persistence.domain.TaskList;
 
-
-@DataJpaTest
+@SpringBootTest
+//@DataJpaTest
 public class TaskListRepoTest {
 	
 	@Autowired
@@ -34,7 +33,7 @@ public class TaskListRepoTest {
 	private final TaskList Test_TaskList3= new TaskList(Test_Name3,Test_Priority3);
 	
 	private List<TaskList> results;
-
+	
 	@BeforeEach
     void init() {
         this.repo.deleteAll();
@@ -46,14 +45,36 @@ public class TaskListRepoTest {
 	
 	@Test
 	void LastIDTest() throws Exception{
-		assertThat(this.repo.LastID()).isEqualTo(3);
+		List<TaskList> TL = this.repo.findAll();
+		Long IdMax =0l;
+		for(TaskList findId:TL) {
+			if(findId.getId()>IdMax) {
+				IdMax = findId.getId();
+			}
+		}
+		
+		assertThat(IdMax).isEqualTo(this.repo.LastID());
 	}
 	
 	@Test
 	void orderByPriorityJPQLTest() {
+		List<TaskList> repoL = this.repo.orderByPriorityJPQL();
+		this.results.add(Test_TaskList3);
+		this.results.add(Test_TaskList1);
+		this.results.add(Test_TaskList2);
+		assertThat(repoL.get(0).getName()).isEqualTo(this.results.get(0).getName());
+		assertThat(repoL.get(1).getName()).isEqualTo(this.results.get(1).getName());
+		assertThat(repoL.get(2).getName()).isEqualTo(this.results.get(2).getName());
+	}
+	
+	@Test
+	void orderByNameJPQLTest() {
+		List<TaskList> repoL = this.repo.orderByNameJPQL();
 		this.results.add(Test_TaskList1);
 		this.results.add(Test_TaskList3);
 		this.results.add(Test_TaskList2);
-		assertThat(this.repo.orderByPriorityJPQL()).isEqualTo(results);
+		assertThat(repoL.get(0).getName()).isEqualTo(this.results.get(0).getName());
+		assertThat(repoL.get(1).getName()).isEqualTo(this.results.get(1).getName());
+		assertThat(repoL.get(2).getName()).isEqualTo(this.results.get(2).getName());
 	}
 }

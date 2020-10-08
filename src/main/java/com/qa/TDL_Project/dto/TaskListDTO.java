@@ -15,6 +15,7 @@ import lombok.Setter;
 @Setter
 //@ToString
 @EqualsAndHashCode
+
 public class TaskListDTO {
 	
 	private Long id;
@@ -27,7 +28,6 @@ public class TaskListDTO {
 		this.name = name;
 		this.priority=priority;
 	}
-	
 	
 	
 }

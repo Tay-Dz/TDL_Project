@@ -98,6 +98,12 @@ class TaskListServiceUnitTest {
 
         verify(repo, times(1)).orderByNameJPQL();
     }
+    @Test
+    void readLastIDTest() {
+    	when(repo.LastID()).thenReturn(this.id);
+    	assertThat(this.service.readLastID()).isNotNull();
+    	verify(repo, times(1)).LastID();
+    }
     
     @Test
     void deleteTest() {
