@@ -29,20 +29,24 @@ class TaskListServiceIntegrationTest {
     private TaskList testTaskList;
     private TaskList testTaskListWithId;
     
-    private List<Task> testTasks = new ArrayList<>();
-
     @Autowired
     private ModelMapper modelMapper;
 
     private TaskListDTO mapToDTO(TaskList taskList) {
         return this.modelMapper.map(taskList, TaskListDTO.class);
     }
+    private List<TaskListDTO> mapToDTO(List<TaskList> taskList) {
+    	List<TaskListDTO> TLDTOlist= new ArrayList<>();
+        for(TaskList task:taskList) {
+        	TLDTOlist.add(this.modelMapper.map(task, TaskListDTO.class));
+        }
+        return TLDTOlist;
+    }
     
     
 
     @BeforeEach
     void init() {
-    	testTasks.add(new Task("Clean",1));
         this.repo.deleteAll();
         this.testTaskList = new TaskList("Monday",1);
         this.testTaskListWithId = this.repo.save(this.testTaskList);
@@ -67,13 +71,31 @@ class TaskListServiceIntegrationTest {
     }
     @Test
     void testReadByPriority() {
+        TaskList testTaskList2 = new TaskList("Tuesday",3);
+        TaskList testTaskListWithId2 = this.repo.save(testTaskList2);
+        TaskList testTaskList3 = new TaskList("Wednesday",2);
+        TaskList testTaskListWithId3 = this.repo.save(testTaskList3);
+        List<TaskList> TLPriority = new ArrayList<>();
+        TLPriority.add(testTaskListWithId2);
+        TLPriority.add(testTaskListWithId3);
+        TLPriority.add(this.testTaskListWithId);
+        
         assertThat(this.service.readByPriority())
-            .isEqualTo(Stream.of(this.mapToDTO(testTaskListWithId)).collect(Collectors.toList()));
+            .isEqualTo(this.mapToDTO(TLPriority));
     }
     @Test
     void testReadByName() {
+        TaskList testTaskList2 = new TaskList("XYZ",3);
+        TaskList testTaskListWithId2 = this.repo.save(testTaskList2);
+        TaskList testTaskList3 = new TaskList("ABC",2);
+        TaskList testTaskListWithId3 = this.repo.save(testTaskList3);
+        List<TaskList> TLName = new ArrayList<>();
+        TLName.add(testTaskListWithId3);
+        TLName.add(this.testTaskListWithId);
+        TLName.add(testTaskListWithId2);
+        
         assertThat(this.service.readByName())
-            .isEqualTo(Stream.of(this.mapToDTO(testTaskListWithId)).collect(Collectors.toList()));
+            .isEqualTo(this.mapToDTO(TLName));
     }
     
 

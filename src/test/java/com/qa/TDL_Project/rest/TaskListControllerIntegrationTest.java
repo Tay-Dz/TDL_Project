@@ -51,7 +51,7 @@ public class TaskListControllerIntegrationTest {
 	void init() {
 		this.repo.deleteAll();
 
-		this.testTaskList = new TaskList("Monday");
+		this.testTaskList = new TaskList("Monday",1);
 		this.testTaskListWithId = this.repo.save(this.testTaskList);
 		this.id = this.testTaskListWithId.getId();
 
@@ -92,7 +92,13 @@ public class TaskListControllerIntegrationTest {
 	
 	@Test
 	void testReadByPriority() throws Exception {
+		TaskList testTaskList2 = new TaskList("XYZ",2);
+		TaskList testTaskListWithId2 = this.repo.save(testTaskList2);
+		TaskList testTaskList3 = new TaskList("ABC",3);
+		TaskList testTaskListWithId3 = this.repo.save(testTaskList3);
 		List<TaskList> taskListList = new ArrayList<>();
+		taskListList.add(testTaskListWithId3);
+		taskListList.add(testTaskListWithId2);
 		taskListList.add(this.testTaskListWithId);
 
 		String content = this.mock
@@ -106,8 +112,14 @@ public class TaskListControllerIntegrationTest {
 	
 	@Test
 	void testReadByName() throws Exception {
+		TaskList testTaskList2 = new TaskList("XYZ");
+		TaskList testTaskListWithId2 = this.repo.save(testTaskList2);
+		TaskList testTaskList3 = new TaskList("ABC");
+		TaskList testTaskListWithId3 = this.repo.save(testTaskList3);
 		List<TaskList> taskListList = new ArrayList<>();
+		taskListList.add(testTaskListWithId3);
 		taskListList.add(this.testTaskListWithId);
+		taskListList.add(testTaskListWithId2);
 
 		String content = this.mock
 				.perform(request(HttpMethod.GET, "/taskList/read/name")
@@ -134,8 +146,8 @@ public class TaskListControllerIntegrationTest {
 	@Test
     void testUpdate() throws Exception {
 
-        TaskList newTaskList = new TaskList("Tuesday");
-        TaskList updatedTaskList = new TaskList(newTaskList.getName());
+        TaskList newTaskList = new TaskList("Tuesday",2);
+        TaskList updatedTaskList = new TaskList(newTaskList.getName(),newTaskList.getPriority());
         updatedTaskList.setId(this.id);
 
         String result = this.mock
