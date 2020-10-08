@@ -29,7 +29,7 @@ public class TaskListRepoTest {
 	private final TaskList Test_TaskList2= new TaskList(Test_Name2,Test_Priority2);
 	
 	private final String Test_Name3 = "MNO";
-	private final Integer Test_Priority3 = 3;
+	private final Integer Test_Priority3 = 3; 
 	private final TaskList Test_TaskList3= new TaskList(Test_Name3,Test_Priority3);
 	
 	private List<TaskList> results;

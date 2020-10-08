@@ -53,7 +53,7 @@
                       <option>Low</option>
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary">Edit</button>
+                  <button id ="EditTLSubmit" type="submit" class="btn btn-primary">Edit</button>
                   </form>
               </div>
               </div>
@@ -84,7 +84,7 @@
                       <option>Low</option>
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary">Add</button>
+                  <button id ="AddTaskSubmit" type="submit" class="btn btn-primary">Add</button>
                   </form>
               </div>
               </div>
@@ -116,7 +116,7 @@
                       <option>Low</option>
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary">Add</button>
+                  <button id ="EditTaskSubmit"type="submit" class="btn btn-primary">Add</button>
                   </form>
               </div>
               </div>
@@ -131,6 +131,7 @@
         <!-- Button trigger modal -->
         <div class = "col-4"></div>
         <button
+        id="addTLButton"
           type="button"
           class="btn btn-primary col-3"
           data-toggle="modal"
@@ -163,7 +164,7 @@
                       <option>Low</option>
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary">Add</button>
+                  <button id ="AddTLSubmit" type="submit" class="btn btn-primary">Add</button>
                   </form>
               </div>
               </div>
@@ -177,16 +178,16 @@
     <footer>
       <div class="row ">
         <div class = "col-3"></div>
-        <button class="btn btn-warning col-1">
-          <a href="TaskList.html?order=default">Default Order</a>
+        <button onclick="document.location='TaskList.html?order=default'" id="defaultNAV" class="btn btn-warning col-1">
+          Default Order
         </button>
         <div class="col-1"></div>
-        <button class="btn btn-warning col-1">
-          <a href="TaskList.html?order=name">Order by Name</a>
+        <button onclick="document.location='TaskList.html?order=name'"id="nameNAV" class="btn btn-warning col-1">
+          Order by Name
         </button>
         <div class="col-1"></div>
-        <button class="btn btn-warning col-1">
-          <a href="TaskList.html?order=priority">Order by Priority</a>
+        <button onclick="document.location='TaskList.html?order=priority'"id="priorityNAV"class="btn btn-warning col-1">
+          Order by Priority
         </button>
       </div>
     </footer>

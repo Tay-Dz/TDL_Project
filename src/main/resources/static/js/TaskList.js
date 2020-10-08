@@ -1,4 +1,5 @@
 const params = new URLSearchParams(window.location.search);
+console.log(params);
 for (const param of params) {
   console.log(param);
   let order = param[1];
@@ -35,7 +36,7 @@ function createTables(tables, TaskListData) {
     Listname.textContent = element.name;
     let data = Object.keys(element.tasks[0]);
     createTableHead(table, data);
-    createTableBody(table, element.tasks);
+    createTableBody(table, element.tasks,element.name);
     tableDiv.appendChild(Listname);
     tableDiv.appendChild(table);
 
@@ -48,6 +49,7 @@ function createTables(tables, TaskListData) {
     let myAddTaskButton = document.createElement("button");
     myAddTaskButton.className = "btn btn-outline-primary";
     myAddTaskButton.innerHTML = "Add Task";
+    myAddTaskButton.id = "AddTaskButton"+element.name;
     myAddTaskButton.setAttribute("data-toggle", "modal");
     myAddTaskButton.setAttribute("data-target", "#AddTaskModal");
     myAddTaskButton.onclick = function () {
@@ -57,6 +59,7 @@ function createTables(tables, TaskListData) {
     let myEditButtonTL = document.createElement("button");
     myEditButtonTL.className = "btn btn-outline-primary";
     myEditButtonTL.innerHTML = "Edit";
+    myEditButtonTL.id = "EditTLButton"+element.name;
     myEditButtonTL.setAttribute("data-toggle", "modal");
     myEditButtonTL.setAttribute("data-target", "#EditTLModal");
     myEditButtonTL.onclick = function () {
@@ -66,6 +69,7 @@ function createTables(tables, TaskListData) {
     let myDeleteButtonTL = document.createElement("button");
     myDeleteButtonTL.className = "btn btn-outline-primary";
     myDeleteButtonTL.innerHTML = "Delete";
+    myDeleteButtonTL.id = "DeleteTLButton"+element.name;
     myDeleteButtonTL.onclick = function () {
       deleteTaskList(ID);
     };
@@ -105,7 +109,7 @@ function createTableHead(table, data) {
   th3.appendChild(text3);
   row.appendChild(th3);
 }
-function createTableBody(table, TaskListData) {
+function createTableBody(table, TaskListData,TLname) {
   let firstElement = true;
   for (let element of TaskListData) {
     if (firstElement) {
@@ -125,7 +129,8 @@ function createTableBody(table, TaskListData) {
     let newCell = row.insertCell();
     let newCell2 = row.insertCell();
     let myEditButton = document.createElement("button");
-    myEditButton.className = "btn  ";
+    myEditButton.className = "btn";
+    myEditButton.id = "EditTaskButton"+TLname+element.name;
     myEditButton.setAttribute("data-toggle", "modal");
     myEditButton.setAttribute("data-target", "#EditTaskModal");
 
@@ -143,6 +148,7 @@ function createTableBody(table, TaskListData) {
 
     let myDeleteButton = document.createElement("button");
     myDeleteButton.className = "btn";
+    myDeleteButton.id = "DeleteTaskButton"+TLname+element.name;
     let deleteIcon = document.createElement("span");
     deleteIcon.className = "material-icons";
     deleteIcon.innerHTML="delete";
@@ -274,7 +280,7 @@ document
 
     let TID = parseInt(TaskID);
     console.log(TID);
-    editTaskList(EDITname, EDITpriority, TID);
+    editTask(EDITname, EDITpriority, TID);
   });
 
 function priorityChange(priority) {
@@ -333,7 +339,7 @@ function addTask(name, priority, TLID) {
     });
 }
 
-function editTaskList(name, priority, TID) {
+function editTask(name, priority, TID) {
   fetch("http://localhost:1998/task/update/" + TID, {
     method: "put",
     headers: {
