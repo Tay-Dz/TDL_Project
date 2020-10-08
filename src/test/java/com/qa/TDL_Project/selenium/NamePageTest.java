@@ -139,7 +139,7 @@ public class NamePageTest {
 	public void DefaultNavTest() throws Exception{
 		driver.get("http://127.0.0.1:5500/src/main/resources/static/html/TaskList.html?order=name");
 		driver.findElement(By.id("defaultNAV")).click();
-		assertThat(driver.getCurrentUrl()).isEqualTo("http://127.0.0.1:5500/src/main/resources/static/html/TaskList.html?order=default");
+		assertThat(driver.getCurrentUrl()).isEqualTo("http://127.0.0.1:5500/src/main/resources/static/html/TaskList.html");
 	}
 	@Test
 	public void NameNavTest() throws Exception{

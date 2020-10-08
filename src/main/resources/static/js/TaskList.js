@@ -1,10 +1,10 @@
 const params = new URLSearchParams(window.location.search);
-console.log(params);
+let order = "default";
 for (const param of params) {
   console.log(param);
-  let order = param[1];
-  getOrder(order);
+  order = param[1];
 }
+getOrder(order);
 
 function getOrder(order) {
   fetch("http://localhost:1998/taskList/read/" + order)
@@ -165,9 +165,9 @@ function createTableBody(table, TaskListData,TLname) {
 function priority(priority) {
   if (priority === 1) {
     return "Low";
-  } else if (priority == 2) {
+  } else if (priority === 2) {
     return "Medium";
-  } else {
+  } else if(priority === 3){
     return "High";
   }
 }
