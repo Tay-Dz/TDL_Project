@@ -1,4 +1,5 @@
 const params = new URLSearchParams(window.location.search);
+console.log(params);
 for (const param of params) {
   console.log(param);
   let order = param[1];
