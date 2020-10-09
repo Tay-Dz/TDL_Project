@@ -81,11 +81,13 @@ public class DefaultPageTest {
 		driver.findElement(By.id("DeleteTaskButtonTaskList1EditTask1Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
 //		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskList1Edit"))));
 		driver.findElement(By.id("DeleteTLButtonTaskList1Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\\\"TaskTables\\\"]/div[2]/table"))));
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 	}
 	@Test
 	public void PriorityNavTest() throws Exception{

@@ -75,3 +75,10 @@
 [1009/104230.234:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [1009/104241.781:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [1009/104250.771:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1009/154202.090:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\taydz\AppData\Local\Temp\scoped_dir41652_1643019187\Crashpad\attachments\ddb5b251-f4cd-44c4-956f-a8cc0a107b96: The system cannot find the path specified. (0x3)
+[1009/154333.397:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\taydz\AppData\Local\Temp\scoped_dir22488_1123509013\Crashpad\attachments\ec046b33-d1dd-4038-8939-3f1a62eecfca: The system cannot find the path specified. (0x3)
+[1009/154333.827:ERROR:process_reader_win.cc(155)] SuspendThread: Access is denied. (0x5)
+[1009/154333.827:ERROR:exception_snapshot_win.cc(100)] thread ID 32372 not found in process
+[1009/154333.844:ERROR:process_memory_win.cc(73)] ReadMemory at 0xd1cfaed000 of 852 bytes failed: Only part of a ReadProcessMemory or WriteProcessMemory request was completed. (0x12B)
+[1009/154333.845:ERROR:process_snapshot_win.cc(411)] ReadMemory PEB
+[1009/154513.225:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\taydz\AppData\Local\Temp\scoped_dir34852_488280377\Crashpad\attachments\01f135ed-754a-4ddc-b04a-bdd171152fc5: The system cannot find the path specified. (0x3)

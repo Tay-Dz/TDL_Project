@@ -81,11 +81,13 @@ public class NamePageTest {
 		driver.findElement(By.id("DeleteTaskButtonTaskList2EditTask1Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
 //		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskList2Edit"))));
 		driver.findElement(By.id("DeleteTLButtonTaskList2Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\\\"TaskTables\\\"]/div[2]/table"))));
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 	}
 	
 	@Test
@@ -122,13 +124,16 @@ public class NamePageTest {
 		assertThat(TLname3).isEqualTo("TaskListCDE");
 		
 		driver.findElement(By.id("DeleteTLButtonTaskListABC")).click();
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListBCD"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListBCD")).click();
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListCDE"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListCDE")).click();
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		
 		
 	}

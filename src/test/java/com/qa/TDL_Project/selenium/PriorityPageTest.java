@@ -84,10 +84,12 @@ public class PriorityPageTest {
 //		wait.until(ExpectedConditions.stalenessOf(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]")));
 ////		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
 ////		driver.
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskList3Edit"))));
 		driver.findElement(By.id("DeleteTLButtonTaskList3Edit")).click();
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 
 //		wait.until(ExpectedConditions.stalenessOf(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]")));
 //		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table"))));
@@ -129,13 +131,16 @@ public class PriorityPageTest {
 		assertThat(TLPriority3).isEqualTo("table Low");
 		
 		driver.findElement(By.id("DeleteTLButtonTaskListA")).click();
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListB"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListB")).click();
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListC"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListC")).click();
-		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		Thread.sleep(250);
 
 		
 	}
