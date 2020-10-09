@@ -2,6 +2,8 @@ package com.qa.TDL_Project.selenium;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -75,15 +77,15 @@ public class DefaultPageTest {
 		assertThat(EditTaskname).isEqualTo("Task1Edit");
 		String EditTaskPriority = driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]/td[2]")).getText();
 		assertThat(EditTaskPriority).isEqualTo("Medium");
-		Thread.sleep(500);
+
 		driver.findElement(By.id("DeleteTaskButtonTaskList1EditTask1Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
 //		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
-		Thread.sleep(500);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskList1Edit"))));
 		driver.findElement(By.id("DeleteTLButtonTaskList1Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\\\"TaskTables\\\"]/div[2]/table"))));
-		
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 	}
 	@Test
 	public void PriorityNavTest() throws Exception{

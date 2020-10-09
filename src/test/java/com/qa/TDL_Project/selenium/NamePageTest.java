@@ -2,6 +2,8 @@ package com.qa.TDL_Project.selenium;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -75,15 +77,15 @@ public class NamePageTest {
 		assertThat(EditTaskname).isEqualTo("Task1Edit");
 		String EditTaskPriority = driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]/td[2]")).getText();
 		assertThat(EditTaskPriority).isEqualTo("Medium");
-		Thread.sleep(500);
+
 		driver.findElement(By.id("DeleteTaskButtonTaskList2EditTask1Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
 //		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
-		Thread.sleep(500);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskList2Edit"))));
 		driver.findElement(By.id("DeleteTLButtonTaskList2Edit")).click();
 //		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//*[@id=\\\"TaskTables\\\"]/div[2]/table"))));
-		
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 	}
 	
 	@Test
@@ -118,14 +120,15 @@ public class NamePageTest {
 		assertThat(TLname2).isEqualTo("TaskListBCD");
 		String TLname3 = driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[6]/h2")).getText();
 		assertThat(TLname3).isEqualTo("TaskListCDE");
+		
 		driver.findElement(By.id("DeleteTLButtonTaskListABC")).click();
-		Thread.sleep(500);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListBCD"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListBCD")).click();
-		Thread.sleep(500);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListCDE"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListCDE")).click();
-		
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		
 		
 	}

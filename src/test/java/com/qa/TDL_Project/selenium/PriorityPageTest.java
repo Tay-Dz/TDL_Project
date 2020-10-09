@@ -79,14 +79,15 @@ public class PriorityPageTest {
 		assertThat(EditTaskname).isEqualTo("Task1Edit");
 		String EditTaskPriority = driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]/td[2]")).getText();
 		assertThat(EditTaskPriority).isEqualTo("Medium");
-		Thread.sleep(500);
+		
 		driver.findElement(By.id("DeleteTaskButtonTaskList3EditTask1Edit")).click();
 //		wait.until(ExpectedConditions.stalenessOf(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]")));
 ////		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]"))));
 ////		driver.
-		Thread.sleep(500);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskList3Edit"))));
 		driver.findElement(By.id("DeleteTLButtonTaskList3Edit")).click();
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 
 //		wait.until(ExpectedConditions.stalenessOf(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table/thead/tr[2]")));
 //		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@id=\"TaskTables\"]/div[2]/table"))));
@@ -126,14 +127,15 @@ public class PriorityPageTest {
 		assertThat(TLPriority2).isEqualTo("table Medium");
 		String TLPriority3 = driver.findElement(By.xpath("//*[@id=\"TaskTables\"]/div[6]/table")).getAttribute("class");
 		assertThat(TLPriority3).isEqualTo("table Low");
+		
 		driver.findElement(By.id("DeleteTLButtonTaskListA")).click();
-		Thread.sleep(500);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListB"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListB")).click();
-		Thread.sleep(500);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("DeleteTLButtonTaskListC"))));
 		driver.findElement(By.id("DeleteTLButtonTaskListC")).click();
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 
 		
 	}
