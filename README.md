@@ -1,4 +1,4 @@
-Coverage: 73.3%
+Coverage: 83.4%
 # To Do List Application
 
 A To Do List Application with a backend written in Java and frontend written in HTML, CSS and JavaScript. The program inlcludes CRUD functionality for task lists and task entites within a H2 database.
@@ -31,7 +31,6 @@ Requirements (if using Eclipse):
 
 ## Running the tests
 
-
 ### Unit Tests 
 
 JUnit tests are used to test individual components of each class.
@@ -41,15 +40,16 @@ To run the test open up the test class file in your IDE and select 'Run as JUnit
 
 Right click the project folder in the 'Project Explorer' and select 'Coverage as JUnit Test'.
 
+### Selenium Tests
+
+Re-run the program as a SpringBoot Application. 
+Then, to run the test open up the test class file within the Slenium package in your IDE and select 'Run as JUnit Test'.
 
 ## API
 
 - Ensure the Backend SpringBoot Application is being run
 - run the application on `localhost:1998`
--
 
 ## Authors
 
 * **Tay Dzonu** - *Completed work from IMS starter* - [Tay-Dzonu-QA](https://github.com/Tay-Dzonu-QA)
-
-
