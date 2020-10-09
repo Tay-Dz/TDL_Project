@@ -43,7 +43,7 @@ Right click the project folder in the 'Project Explorer' and select 'Coverage as
 ### Selenium Tests
 
 Re-run the program as a SpringBoot Application. 
-Then, to run the test open up the test class file within the Slenium package in your IDE and select 'Run as JUnit Test'.
+Then, to run the test open up the test class file within the Selenium package in your IDE and select 'Run as JUnit Test'.
 
 ## API
 
