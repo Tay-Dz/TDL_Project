@@ -80,6 +80,33 @@ class TaskServiceUnitTest {
     }
     
     @Test
+    void updateTest() {
+        final long ID = 1L;
+
+        TaskDTO newTask = new TaskDTO(null, "Cook", 2);
+
+        Task task = new Task("Cook", 2);
+        task.setId(ID);
+
+        Task updatedTask = new Task(newTask.getName(), newTask.getPriority());
+        updatedTask.setId(ID);
+
+        TaskDTO updatedDTO = new TaskDTO(ID, updatedTask.getName(), updatedTask.getPriority());
+
+        when(this.repo.findById(this.id)).thenReturn(Optional.of(task));
+
+        when(this.repo.save(updatedTask)).thenReturn(updatedTask);
+
+        when(this.modelMapper.map(updatedTask, TaskDTO.class)).thenReturn(updatedDTO);
+
+        assertThat(updatedDTO).isEqualTo(this.service.update(newTask, this.id));
+
+        verify(this.repo, times(1)).findById(1L);
+
+        verify(this.repo, times(1)).save(updatedTask);
+    }
+    
+    @Test
     void deleteTest() {
         when(this.repo.existsById(id)).thenReturn(true, false);
 

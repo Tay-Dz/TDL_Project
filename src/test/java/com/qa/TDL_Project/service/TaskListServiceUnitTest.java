@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.qa.TDL_Project.dto.TaskDTO;
 import com.qa.TDL_Project.dto.TaskListDTO;
+import com.qa.TDL_Project.persistence.domain.Task;
 import com.qa.TDL_Project.persistence.domain.TaskList;
 import com.qa.TDL_Project.persistence.repository.TaskListRepo;
 
@@ -103,6 +105,33 @@ class TaskListServiceUnitTest {
     	when(repo.LastID()).thenReturn(this.id);
     	assertThat(this.service.readLastID()).isNotNull();
     	verify(repo, times(1)).LastID();
+    }
+    
+    @Test
+    void updateTest() {
+        final long ID = 1L;
+
+        TaskListDTO newTaskList = new TaskListDTO(null, "Tuesday", 2);
+
+        TaskList taskList = new TaskList("Tuesday", 2);
+        taskList.setId(ID);
+
+        TaskList updatedTaskList = new TaskList(newTaskList.getName(), newTaskList.getPriority());
+        updatedTaskList.setId(ID);
+
+        TaskListDTO updatedDTO = new TaskListDTO(ID, updatedTaskList.getName(), updatedTaskList.getPriority());
+
+        when(this.repo.findById(this.id)).thenReturn(Optional.of(taskList));
+
+        when(this.repo.save(updatedTaskList)).thenReturn(updatedTaskList);
+
+        when(this.modelMapper.map(updatedTaskList, TaskListDTO.class)).thenReturn(updatedDTO);
+
+        assertThat(updatedDTO).isEqualTo(this.service.update(newTaskList, this.id));
+
+        verify(this.repo, times(1)).findById(1L);
+
+        verify(this.repo, times(1)).save(updatedTaskList);
     }
     
     @Test
